@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
-import { Tshirt, MessageCircle } from 'lucide-react';
+import { Shirt, MessageCircle } from 'lucide-react';
 
 const TryOn = () => {
   const navigate = useNavigate();
@@ -64,7 +63,7 @@ const TryOn = () => {
           <div className="md:col-span-2">
             <div className="bg-white p-6 rounded-lg shadow-md h-full">
               <h2 className="text-xl font-semibold mb-4 flex items-center">
-                <Tshirt className="h-5 w-5 mr-2 text-fashine-purple" />
+                <Shirt className="h-5 w-5 mr-2 text-fashine-purple" />
                 Khu Vực Thử Đồ
               </h2>
               

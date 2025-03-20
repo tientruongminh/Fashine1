@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { MessageSquare, Tshirt, Clock, Star } from 'lucide-react';
+import { MessageSquare, Shirt, Clock, Star } from 'lucide-react';
 import Header from '@/components/Header';
 import FeatureCard from '@/components/FeatureCard';
 import Logo from '@/components/Logo';
