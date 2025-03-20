@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -26,6 +26,7 @@ const TryOn = () => {
   const userImage = localStorage.getItem('userImage');
   const [chatOpen, setChatOpen] = useState(true);
   const [activeOutfit, setActiveOutfit] = useState<string | null>(null);
+  const tabsRef = useRef<HTMLButtonElement>(null);
   
   const outfits = [
     { 
@@ -92,12 +93,23 @@ const TryOn = () => {
   };
   
   const handleItemClick = (item: any) => {
-    // Open chat if it's closed
+    // First, make sure chat is open
     if (!chatOpen) {
       setChatOpen(true);
     }
-    // Open the outfits tab
-    document.getElementById('outfits-tab')?.click();
+    
+    // Use setTimeout to ensure the tab click happens after the state update
+    setTimeout(() => {
+      // Programmatically click the outfits tab
+      if (tabsRef.current) {
+        tabsRef.current.click();
+      } else {
+        const outfitsTab = document.getElementById('outfits-tab');
+        if (outfitsTab) {
+          outfitsTab.click();
+        }
+      }
+    }, 50);
   };
 
   return (
@@ -207,7 +219,7 @@ const TryOn = () => {
                   <Tabs defaultValue="chat" className="w-full">
                     <TabsList className="w-full grid grid-cols-2">
                       <TabsTrigger value="chat">Chat Bot</TabsTrigger>
-                      <TabsTrigger value="outfits" id="outfits-tab">Trang Phục</TabsTrigger>
+                      <TabsTrigger value="outfits" id="outfits-tab" ref={tabsRef}>Trang Phục</TabsTrigger>
                     </TabsList>
                     <TabsContent value="chat" className="p-0">
                       <ScrollArea className="h-[380px] p-4">
@@ -307,3 +319,4 @@ const TryOn = () => {
 };
 
 export default TryOn;
+
