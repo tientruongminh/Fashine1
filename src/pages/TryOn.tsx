@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
-import { Shirt, MessageCircle, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Shirt, MessageCircle, X, ChevronDown, ChevronUp, Eye } from 'lucide-react';
 import { 
   Sheet, 
   SheetContent, 
@@ -20,6 +20,12 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@/components/ui/hover-card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const TryOn = () => {
   const navigate = useNavigate();
@@ -111,6 +117,10 @@ const TryOn = () => {
       }
     }, 50);
   };
+  
+  const handleTryOn = (item: any) => {
+    handleItemClick(item);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -134,18 +144,53 @@ const TryOn = () => {
               
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {shopItems.map((item) => (
-                  <div 
-                    key={item.id}
-                    className="border rounded-lg p-2 cursor-pointer hover:border-fashine-purple transition-all"
-                    onClick={() => handleItemClick(item)}
-                  >
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-40 object-cover rounded mb-2"
-                    />
-                    <p className="text-sm font-medium text-center">{item.name}</p>
-                  </div>
+                  <TooltipProvider key={item.id}>
+                    <HoverCard>
+                      <HoverCardTrigger asChild>
+                        <div 
+                          className="border rounded-lg p-2 cursor-pointer hover:border-fashine-purple transition-all relative group"
+                        >
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            className="w-full h-40 object-cover rounded mb-2"
+                          />
+                          <p className="text-sm font-medium text-center">{item.name}</p>
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button 
+                                  onClick={() => handleTryOn(item)}
+                                  className="bg-fashine-purple hover:bg-fashine-purple-dark"
+                                  size="sm"
+                                >
+                                  <Eye className="h-4 w-4 mr-1" />
+                                  Thử đồ
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Thử đồ ngay</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+                        </div>
+                      </HoverCardTrigger>
+                      <HoverCardContent className="w-64">
+                        <div className="flex flex-col space-y-2">
+                          <h4 className="font-medium">{item.name}</h4>
+                          <p className="text-sm text-gray-500">Thử quần áo này với hình ảnh của bạn để xem phù hợp với bạn ra sao.</p>
+                          <Button 
+                            onClick={() => handleTryOn(item)} 
+                            className="w-full bg-fashine-purple hover:bg-fashine-purple-dark"
+                            size="sm"
+                          >
+                            <Eye className="h-4 w-4 mr-1" />
+                            Thử ngay
+                          </Button>
+                        </div>
+                      </HoverCardContent>
+                    </HoverCard>
+                  </TooltipProvider>
                 ))}
               </div>
             </div>
@@ -319,4 +364,3 @@ const TryOn = () => {
 };
 
 export default TryOn;
-
