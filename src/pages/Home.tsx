@@ -68,7 +68,7 @@ const Home = () => {
               description="Tìm kiếm phong cách của bạn với chatbot AI thông minh. Chia sẻ nhu cầu và sở thích để nhận gợi ý phù hợp."
             />
             <FeatureCard 
-              icon={Tshirt}
+              icon={Shirt}
               title="Thử Đồ Ảo"
               description="Trải nghiệm mặc thử ảo ngay trên màn hình. Xem trước các bộ trang phục trên ảnh của chính bạn."
             />
