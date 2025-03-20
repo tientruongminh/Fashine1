@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Upload, Image, Camera } from 'lucide-react';
+import { UploadIcon, Image, Camera } from 'lucide-react';
 import Logo from '@/components/Logo';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -131,7 +131,7 @@ const Upload = () => {
             ) : (
               <div className="flex flex-col items-center">
                 <div className="bg-fashine-purple/10 p-4 rounded-full mb-4">
-                  <Upload className="h-8 w-8 text-fashine-purple" />
+                  <UploadIcon className="h-8 w-8 text-fashine-purple" />
                 </div>
                 <p className="mb-4 text-gray-600">Kéo và thả ảnh vào đây, hoặc</p>
                 <div className="flex gap-3">
