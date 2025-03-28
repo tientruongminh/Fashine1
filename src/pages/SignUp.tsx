@@ -54,7 +54,7 @@ const SignUp = () => {
       description: "Chào mừng bạn đến với Fashine",
     });
     
-    navigate('/upload');
+    navigate('/home');
   };
 
   const handleSocialSignUp = (provider: 'google' | 'facebook') => {
